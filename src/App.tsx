@@ -1,11 +1,17 @@
-import { Fragment } from 'react';
-import { Button } from './components/Button';
+import { Route, BrowserRouter } from 'react-router-dom';
+import { AuthContextProvider } from './auth/AuthContextProvider';
+
+import { Home } from './pages/Home';
+import { NewRoom } from './pages/NewRoom';
 
 function App() {
   return (
-    <Fragment>
-      <Button />
-    </Fragment>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <Route path="/" exact component={Home} />
+        <Route path="/rooms/new" component={NewRoom} />
+      </AuthContextProvider>
+    </BrowserRouter>
   );
 }
 
