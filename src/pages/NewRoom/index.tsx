@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useAuth } from '@hooks/use-auth';
+import { useAuth } from '@hooks';
 import { database } from '@services/firebase';
 
 import illustrationImg from '@assets/images/illustration.svg';

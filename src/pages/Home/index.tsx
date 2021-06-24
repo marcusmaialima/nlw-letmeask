@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router';
-import { useAuth } from '@hooks/use-auth';
+import { useAuth } from '@hooks';
 import { database } from '@services/firebase';
 
 import illustrationImg from '@assets/images/illustration.svg';
@@ -31,6 +31,11 @@ export function Home() {
     const roomRef = await database.ref(`/rooms/${roomCode}`).get();
 
     if(!roomRef.exists()) {
+      return;
+    }
+
+    if (roomRef.val().closedAt) {
+      alert('Sala já foi fechada.');
       return;
     }
 
