@@ -1,32 +1,32 @@
-import { FormEvent, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useAuth } from '@hooks';
-import { database } from '@services/firebase';
+import { FormEvent, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { useAuth } from '@hooks'
+import { database } from '@services/firebase'
 
-import illustrationImg from '@assets/images/illustration.svg';
-import logoImg from '@assets/images/logo.svg';
-import { Button } from '@components/Button';
+import illustrationImg from '@assets/images/illustration.svg'
+import logoImg from '@assets/images/logo.svg'
+import { Button } from '@components/Button'
 
 export function NewRoom() {
-  const [newRoom, setNewRoom] = useState<string>('');
-  const { user } = useAuth();
-  const history = useHistory();
+  const [newRoom, setNewRoom] = useState<string>('')
+  const { user } = useAuth()
+  const history = useHistory()
 
   async function handleCreateRoom(event: FormEvent) {
-    event.preventDefault();
+    event.preventDefault()
 
     if (newRoom.trim() === '') {
-      return;
+      return
     }
 
-    const roomRef = database.ref('rooms');
+    const roomRef = database.ref('rooms')
 
     const firebaseRoom = await roomRef.push({
       title: newRoom,
-      authorId: user?.id,
-    });
+      authorId: user?.id
+    })
 
-    history.push(`/rooms/${firebaseRoom.key}`);
+    history.push(`/rooms/${firebaseRoom.key}`)
   }
 
   return (
@@ -41,14 +41,16 @@ export function NewRoom() {
           <img src={logoImg} alt="Logo da LetMe Ask" />
           <h2>Criar uma nova sala</h2>
           <form onSubmit={handleCreateRoom}>
-            <input 
+            <input
               type="text"
               placeholder="Nome da sala"
-              onChange={event => setNewRoom(event.target.value)}
-              />
-              <Button type="submit">Criar sala</Button>
+              onChange={(event) => setNewRoom(event.target.value)}
+            />
+            <Button type="submit">Criar sala</Button>
           </form>
-          <p>Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link></p>
+          <p>
+            Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link>
+          </p>
         </div>
       </main>
     </div>

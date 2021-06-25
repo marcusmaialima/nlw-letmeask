@@ -1,5 +1,5 @@
-import { BrowserRouter } from 'react-router-dom';
-import { AuthContextProvider } from '@context/auth/AuthContextProvider';
+import { BrowserRouter } from 'react-router-dom'
+import { AuthContextProvider } from '@context/auth/AuthContextProvider'
 
 import { Router } from './router'
 
@@ -10,7 +10,7 @@ function App() {
         <Router />
       </AuthContextProvider>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

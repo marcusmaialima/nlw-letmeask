@@ -17,24 +17,29 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 24px;
-  }
 
-  .user-info {
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      padding: 2px;
-      border: 1px solid #835afd;
+    .user-info {
+      display: flex;
+      align-items: center;
+  
+      img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        padding: 2px;
+        border: 1px solid #835afd;
+      }
+      
+      span {
+        margin-left: 8px;
+        color: #737380;
+        font-size: 14px;
+      }
     }
-    
-    span {
-      margin-left: 8px;
-      color: #737380;
-      font-size: 14px;
+
+    > div {
+      display: flex;
+      gap: 16px;
     }
   }
 

@@ -1,17 +1,16 @@
-import React from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import React from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 
-import copyImg from '@assets/images/copy.svg';
-import './styles.scss';
+import copyImg from '@assets/images/copy.svg'
+import './styles.scss'
 
 type RoomCodeProps = {
-  code: string;
+  code: string
 }
 
 export function RoomCode({ code }: RoomCodeProps) {
-
   function copyRoomCodeToClipboard() {
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(code)
     toast('Código copiado com sucesso! :)')
   }
 
@@ -21,7 +20,7 @@ export function RoomCode({ code }: RoomCodeProps) {
         <div>
           <img src={copyImg} alt="Copiar o código da sala" />
         </div>
-          <span>Sala #{code}</span>
+        <span>Sala #{code}</span>
       </button>
       <Toaster
         position="top-right"
@@ -30,15 +29,15 @@ export function RoomCode({ code }: RoomCodeProps) {
           duration: 1000,
           style: {
             background: '#2ecc71',
-            color: '#fff',
+            color: '#fff'
           },
           success: {
             duration: 500,
             theme: {
               primary: 'green',
-              secondary: 'black',
-            },
-          },
+              secondary: 'black'
+            }
+          }
         }}
       />
     </React.Fragment>

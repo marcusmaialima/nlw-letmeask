@@ -1,45 +1,45 @@
-import { FormEvent, useState } from 'react';
-import { useHistory } from 'react-router';
-import { useAuth } from '@hooks';
-import { database } from '@services/firebase';
+import { FormEvent, useState } from 'react'
+import { useHistory } from 'react-router'
+import { useAuth } from '@hooks'
+import { database } from '@services/firebase'
 
-import illustrationImg from '@assets/images/illustration.svg';
-import logoImg from '@assets/images/logo.svg';
-import googleIconImage from '@assets/images/google-icon.svg';
-import { Button } from '@components/Button';
-import '@styles/auth.scss';
+import illustrationImg from '@assets/images/illustration.svg'
+import logoImg from '@assets/images/logo.svg'
+import googleIconImage from '@assets/images/google-icon.svg'
+import { Button } from '@components/Button'
+import '@styles/auth.scss'
 
 export function Home() {
-  const [roomCode, setRoomCode] = useState<string>('');
-  const history = useHistory();
-  const { user, signInWithGoogle } = useAuth();
+  const [roomCode, setRoomCode] = useState<string>('')
+  const history = useHistory()
+  const { user, signInWithGoogle } = useAuth()
 
   async function handleCreateRoom() {
     if (!user) {
-      await signInWithGoogle();
+      await signInWithGoogle()
     }
-    history.push('/rooms/new');
+    history.push('/rooms/new')
   }
 
   async function handleJoinRoom(event: FormEvent) {
-    event.preventDefault();
+    event.preventDefault()
 
     if (roomCode.trim() === '') {
-      return;
+      return
     }
 
-    const roomRef = await database.ref(`/rooms/${roomCode}`).get();
+    const roomRef = await database.ref(`/rooms/${roomCode}`).get()
 
-    if(!roomRef.exists()) {
-      return;
+    if (!roomRef.exists()) {
+      return
     }
 
     if (roomRef.val().closedAt) {
-      alert('Sala já foi fechada.');
-      return;
+      alert('Sala já foi fechada.')
+      return
     }
 
-    history.push(`/rooms/${roomCode}`);
+    history.push(`/rooms/${roomCode}`)
   }
 
   return (
@@ -58,13 +58,13 @@ export function Home() {
           </button>
           <div className="separator">ou entre em uma sala</div>
           <form onSubmit={handleJoinRoom}>
-            <input 
+            <input
               type="text"
               placeholder="Digite o código da sala"
-              onChange={event => setRoomCode(event.target.value)}
+              onChange={(event) => setRoomCode(event.target.value)}
               value={roomCode}
-              />
-              <Button type="submit">Entrar na sala</Button>
+            />
+            <Button type="submit">Entrar na sala</Button>
           </form>
         </div>
       </main>
