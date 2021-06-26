@@ -1,4 +1,5 @@
 import './styles.scss'
+import cx from 'classnames'
 
 type QuestionProps = {
   content: string
@@ -20,11 +21,11 @@ export function Question({
 }: QuestionProps) {
   return (
     <div
-      className={`
-        question
-        ${isAnswered && 'answered'}
-        ${isHighlighted && 'highlighted'}
-        `}
+      className={cx(
+        'question',
+        { answered: isAnswered },
+        { highlighted: isHighlighted && !isAnswered }
+      )}
     >
       <p>{content}</p>
       <footer>

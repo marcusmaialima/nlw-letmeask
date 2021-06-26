@@ -38,6 +38,7 @@ type FirebaseQuestions = Record<
 export function useRoom(roomId: string) {
   const [questions, setQuestions] = useState<QuestionType[]>([])
   const [title, setTitle] = useState<string>('')
+  const [loadingQuestions, setLoadingQuestions] = useState<boolean>(true)
 
   const { user } = useAuth()
 
@@ -64,6 +65,7 @@ export function useRoom(roomId: string) {
         }
       })
 
+      setLoadingQuestions(false)
       setTitle(databaseRoom.title)
       setQuestions(parsedQuestions)
     })
@@ -73,5 +75,5 @@ export function useRoom(roomId: string) {
     }
   }, [roomId, user?.id])
 
-  return { questions, title }
+  return { questions, title, loadingQuestions }
 }
